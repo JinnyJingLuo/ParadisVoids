@@ -10,9 +10,9 @@
 *.lib
 
 # Binary executables without extension commonly generated in this repo
-casfem
-convsurfseg
-paradisJHU
+CASFEM/casfem
+convsurfseg/convsurfseg
+paradis/paradisJHU
 test
 
 # Editor and OS files
@@ -37,4 +37,3 @@ fem_out_*
 **/restart/
 **/tmp/
 **/output/
-
