@@ -1,5 +1,6 @@
 #include "PrecipitateStructure.h"
 #include "Tools.h"
+#include "Dodecahedron.h"
 #include "math.h"
 #include "string"
 #include "list"
@@ -124,7 +125,7 @@ bool PrecipitateStructure::ReadPrecipitatesFile(const string &sFileName)
       printf("error: precipitate generation failed\n");
       fclose(fpFile);
       return false;
-    } // jing - what we can use for SRO
+    }
     loPoints.clear();
     poPrecipitate->SetID(i + 1);
     m_vpoPrecipitates[i] = poPrecipitate;
@@ -342,6 +343,69 @@ const vector<Polyhedron *> *PrecipitateStructure::GetPrecipitates() const
 unsigned int PrecipitateStructure::GetPrecipitatesCount() const
 {
   return (unsigned int)m_vpoPrecipitates.size();
+}
+bool PrecipitateStructure::AddSphericalPrecipitate(const Point &oCenter,
+                                                   const double &dRadius)
+{
+  if (dRadius <= 0.0)
+  {
+    return false;
+  }
+
+  Dodecahedron oSphereApproximation;
+  oSphereApproximation.Set(2.0 * dRadius, false);
+  oSphereApproximation.SetOrigin(oCenter);
+
+  list<GenericNode *> *ploNodes = oSphereApproximation.GetTriangulationPoints();
+  list<Point> loPoints;
+  list<GenericNode *>::iterator liNodes;
+  unsigned int iNodeID = 0;
+  unsigned int iAttempt = 0;
+  const unsigned int iMaxAttempts = 3;
+  Polyhedron *poPrecipitate = NULL;
+  bool bSuccess = false;
+
+  for (iAttempt = 0; iAttempt < iMaxAttempts; iAttempt++)
+  {
+    loPoints.clear();
+    iNodeID = 0;
+    double dEpsilon = 0.0;
+    if (iAttempt > 0)
+    {
+      dEpsilon = dRadius * 1.0e-8 * (double)iAttempt;
+    }
+    for (liNodes = ploNodes->begin(); liNodes != ploNodes->end(); liNodes++)
+    {
+      Point oPoint((*liNodes)->GetX(), (*liNodes)->GetY(), (*liNodes)->GetZ());
+      if (dEpsilon > 0.0)
+      {
+        int iSignX = (iNodeID % 2 == 0) ? 1 : -1;
+        int iSignY = (iNodeID % 3 == 0) ? 1 : -1;
+        int iSignZ = (iNodeID % 5 == 0) ? 1 : -1;
+        oPoint.Shift(iSignX * dEpsilon, iSignY * dEpsilon, iSignZ * dEpsilon);
+      }
+      loPoints.push_back(oPoint);
+      iNodeID++;
+    }
+
+    poPrecipitate = new Polyhedron;
+    if (poPrecipitate->CreateAsHullFromPoints(&loPoints))
+    {
+      bSuccess = true;
+      break;
+    }
+    delete poPrecipitate;
+    poPrecipitate = NULL;
+  }
+
+  if (!bSuccess || (poPrecipitate == NULL))
+  {
+    return false;
+  }
+
+  poPrecipitate->SetID((unsigned int)m_vpoPrecipitates.size() + 1);
+  m_vpoPrecipitates.push_back(poPrecipitate);
+  return true;
 }
 bool PrecipitateStructure::IsPointInsidePrecipitate(const Point &oPoint) const
 {

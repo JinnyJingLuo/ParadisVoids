@@ -1,0 +1,31 @@
+# Declaration of variables
+CC = mpicxx
+EZMATH_DIR = ../ezmath/
+FLAGS = -I$(EZMATH_DIR) -DPARALLEL -vec_report0
+OPTIMIZATION = -O3
+EXEC = casfem_proc
+
+EZMATH_SOURCES = Tools.cpp				\
+	
+
+SOURCES =  FEMOutputConverter.cpp
+
+ABSOLUTE_EZMATH_SOURCES = $(foreach source,$(EZMATH_SOURCES),$(EZMATH_DIR)$(source))
+EZMATH_OBJECTS = $(ABSOLUTE_EZMATH_SOURCES:.cpp=.o)
+OBJECTS = $(SOURCES:.cpp=.o)
+
+# Main target
+$(EXEC): $(EZMATH_OBJECTS) $(OBJECTS)
+	$(CC) $(EZMATH_OBJECTS) $(OBJECTS) -o $(EXEC)
+
+# To obtain object files
+%.o: %.cpp
+	$(CC) -c $(FLAGS) $(OPTIMIZATION) $< -o $@
+
+
+# To remove generated files
+clean:
+	rm -f $(EXEC) ./*.o
+
+
+

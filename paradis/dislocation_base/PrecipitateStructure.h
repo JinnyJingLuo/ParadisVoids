@@ -26,6 +26,7 @@ public:
   void WriteAPB() const;
   bool IsPointInsidePrecipitate(const Point &oPoint) const;
   AxisAlignedBoundingBox GetBoundingBox() const;
+  bool AddSphericalPrecipitate(const Point &oCenter, const double &dRadius);
   void RemoveNonIntersectingPrecipitates(const Plane &oPlane);
   void RemoveExternalPrecipitates(Polyhedron *poVolumePolyhedron);
   void PlaneCut(const Plane &oPlane, const bool &bPerturb = false,
