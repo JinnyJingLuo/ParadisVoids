@@ -28,4 +28,6 @@ voids_test/*/restart/
 voids_test/*/*.log
 voids_test/restart_resume_probe.log
 voids_test/thinfilm_nucleation_run*.log
-
+voids_test/thinfilm/
+voids_test/thinfilm_nucleation/
+voids_test/vtkfile/
