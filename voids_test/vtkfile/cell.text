@@ -1,0 +1,7 @@
+process type = 6
+#restart sequence base file name = Cell1/Cases/50_0shear/OUTPUT/restart/rs0001.data
+restart sequence base file name = ../thinfilm/restart/rs0001.data
+animation sequence base file name = thinfilm_
+restart sequence count = 10000
+restart sequence skip = 1
+

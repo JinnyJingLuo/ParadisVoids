@@ -1,0 +1,217 @@
+numXdoms =   1
+numYdoms =   1  
+numZdoms =   1
+numXcells =  1
+numYcells =   1
+numZcells =   1
+BoundaryType = 1
+decompType =   1  
+DLBfreq =   30  
+#
+#  Simulation time and timestepping controls
+#
+cycleStart =   1
+maxstep =   5000
+timeNow =   8e-4  
+deltaTT =   1.0e-13
+dtIncrementFact =   1.200000e+00  
+dtDecrementFact =   5.000000e-01  
+dtExponent =   4.000000e+00  
+dtVariableAdjustment =   0  
+rTol =   1
+rmax =   1
+#
+#  Discretization and topological change controls
+#  
+maxSeg =   60
+minSeg =   25
+remeshRule =   2  
+splitMultiNodeFreq =   1  
+#
+#  Tables for non-FMM far-field force calcs
+#  
+Rijmfile =   "inputs/Rijm.cube.out"  
+RijmPBCfile =   "inputs/RijmPBC.cube.out"  
+#
+#  Loading conditions
+#  
+TempK =   3.000000e+02  
+pressure =   0.000000e+00  
+loadType =   0 
+voidR = 100
+appliedStress = [
+  -80.00e+7
+  80.000e+7
+  0
+  40.0000e+7
+  -40.000e+7
+  0
+  ]
+eRate =   1e-3  
+MaximumPlasticStrain = 0.002
+indxErate =   1  
+edotdir = [
+    1.0
+    0.0
+    0.0
+  ]
+cTimeOld =   0.000000e+00  
+dCyclicStrain =   0.000000e+00  
+netCyclicStrain =   0.000000e+00  
+numLoadCycle =   0  
+eAmp =   0.000000e+00  
+#
+#  Material and mobility parameters
+#  
+mobilityLaw =   "FCC_0"  
+vacancyConc =   -1.000000e+00  
+vacancyConcEquilibrium =   -1.000000e+00  
+shearModulus =   7.743e+10   
+pois =   3.18000e-1
+burgMag =   2.490000e-10
+YoungModulus =  20.41e+10
+rc =   4.30000000e+00  
+Ecore =   1.442051e+10  
+MobScrew =   4.000000e+03  
+MobEdge =   4.000000e+03  
+MobClimb =   0.000000e+00  
+MobM =   3.099000e-08
+MobB0 =   2.200000e-05
+HandleCrossSlip =   1
+CrossSlipHandlingFrequency =   1
+BulkCrossSlipActivationEnergy =   6.408705e-20
+SurfaceCrossSlipActivationEnergy =   3.204353e-20
+HirthCrossSlipActivationEnergy =   3.204353e-20
+LCLockCrossSlipActivationEnergy =   9.613059e-20
+GlideLockCrossSlipActivationEnergy =   8.010882e-20
+BulkCrossSlipActivationVolumeFactor =   2.000000e+01
+SurfaceCrossSlipActivationVolumeFactor =   2.000000e+01
+HirthCrossSlipActivationVolumeFactor =   2.000000e+01
+LCLockCrossSlipActivationVolumeFactor =   2.000000e+01
+GlideLockCrossSlipActivationVolumeFactor =   2.000000e+01
+BulkCrossSlipReferenceLength =   4.000000e+03
+SurfaceCrossSlipReferenceLength =   4.000000e+03
+HirthCrossSlipReferenceLength =   4.000000e+03
+LCLockCrossSlipReferenceLength =   4.000000e+03
+GlideLockCrossSlipReferenceLength =   4.000000e+03
+SurfaceCrossSlipLength =   5.000000e+00
+HirthCrossSlipLength =   1.000000e+01
+LCLockCrossSlipLength =   1.000000e+01
+GlideLockCrossSlipLength =   1.000000e+01
+BulkCrossSlipFrequency =   1.000000e+12
+SurfaceCrossSlipFrequency =   5.000000e+17
+HirthCrossSlipFrequency =   5.000000e+17
+LCLockCrossSlipFrequency =   5.000000e+17
+GlideLockCrossSlipFrequency =   5.000000e+17
+BulkStackingFaultEnergy =   1.200000e-01
+SurfaceStackingFaultEnergy =   1.200000e-01
+HirthStackingFaultEnergy =   1.200000e-01
+LCLockStackingFaultEnergy =   1.200000e-01
+GlideLockStackingFaultEnergy =   1.200000e-01
+BulkDoverBRatio =   5.000000e+00
+SurfaceDoverBRatio =   5.000000e+00
+HirthDoverBRatio =   5.000000e+00
+LCLockDoverBRatio =   5.000000e+00
+GlideLockDoverBRatio =   5.000000e+00
+KeepSurfaceArms =   1
+EnableFEM =   0
+FEMCorrectionFrequency = 10000
+CyclicLoadAmplitude = 0.005
+CyclicLoadFrequency = 10000
+FEMTimeStep =   5.000000e-07
+CyclicLoadPhase = 0.0
+APBEnrgy =   0.122  
+#
+#  Flux decomposition
+#  
+totstraintensor = [
+  0.0
+  0.0
+  0.0
+  0.0
+  0.0
+  0.0
+  ]
+totpStn = [
+  0.0
+  0.0
+  0.0
+  0.0
+  0.0
+  0.0
+  ]
+totpSpn = [
+  0.0
+  0.000000e+00
+  0.000000e+00
+  0.0
+  0.0
+  0.0
+  ]
+#
+#  Velocity statistics
+#  
+vAverage =   0.000000e+00  
+vStDev =   0.000000e+00  
+#HType = 0
+#chi0 = 5.00000e-2
+#cmax = 9.280000e+28
+#dv = 1.400000e-30
+#kbt = 4.14e-21
+#
+#  I/O controls and parameters
+#  
+dirname =   "thinfilm" 
+PrecipitatesFileName =   " "
+ShearablePrecipitates =   0
+PairPrecipitateShearing =   0  
+writeBinRestart =   0  
+skipIO =   0  
+numIOGroups =   1  
+fluxfile =   0  
+fluxfreq =   100  
+fluxdt =   -1.000000e+00  
+fluxtime =   0.000000e+00  
+fluxcounter =   0  
+savecn =   1
+savefreq =   10
+savecndt =   -1.000000e+00  
+savecntime =   0.000000e+00  
+saveprop =   1  
+savepropfreq =   1  
+savepropdt =   -1.000000e+00  
+saveproptime =   0.000000e+00  
+savetimers =   0  
+savetimersfreq =   100  
+savetimersdt =   0.000000e+00  
+savetimerstime =   0.000000e+00  
+savetimerscounter =   0  
+tecplot =   0  
+tecplotfreq =   500  
+tecplotdt =   -1.000000e+00  
+tecplottime =   0.000000e+00  
+tecplotcounter =   27297  
+savedensityspec = [
+  0
+  0
+  0
+  ]
+writetsbspec = [
+  0
+  0
+  0
+  ]
+tsbfile =   0  
+tsbfilefreq =   100  
+tsbfiledt =   -1.000000e+00  
+tsbfiletime =   0.000000e+00  
+tsbfilecounter =   0  
+#
+#  Miscellaneous parameters
+#  
+enforceGlidePlanes =   1  
+TensionFactor =   1.000000e+00  
+elasticinteraction =   1  
+springConst =   1.000000e+02  
+vizfilemode =   0  
+vizfilename =   "" 
